@@ -37,9 +37,7 @@ Array u8CamConfig defines the profile for Camshaft signal
 
 ******************************************************************************/
 
-#pragma DATA_SEG SHARED_DATA 
-,
-;                           
+#pragma DATA_SEG SHARED_DATA                         
 #pragma DATA_SEG DEFAULT
 
 /******************************************************************************
@@ -59,27 +57,13 @@ the PWM period and duty cycle, and the starting position
 
 #pragma DATA_SEG DEFAULT
 
-#pragma DATA_SEG SHARED_DATA
-#pragma DATA_SEG DEFAULT
-
-#pragma DATA_SEG SHARED_DATA
-#pragma DATA_SEG DEFAULT
-
-#pragma DATA_SEG SHARED_DATA
-
-#pragma DATA_SEG DEFAULT
 
 /******************************************************************************
 Variables for control data
 ******************************************************************************/
 
-#pragma DATA_SEG XGATE_DATA
-tCamCrankControl CAM_CRANK_Control= 
-{ sizeof(cam_crank_channels)/sizeof(tCamCrankChDescr), cam_crank_channels};
-#pragma DATA_SEG DEFAULT
 
 #pragma DATA_SEG XGATE_DATA
-tCamCrankChDescr* ptCamCrankChDescr_ptr;                            
 #pragma DATA_SEG DEFAULT
 
 /*****************************************************************************************************
@@ -99,12 +83,12 @@ Notes     		: Cam Crank algorithm implementation. Callback function to be called
           		  by appropriate ISR
 ******************************************************************************/
 #pragma CODE_SEG XGATE_CODE
-  void vfnCamCrank_Callback(void) 
+  void vfnPWM_Callback(void) 
   {                                 
     	UINT16 u16Delay;
     	UINT8  u8Channel;
     	
-      while (!_ssem(CAM_CRANK_SEMAPHORE)) { }
+      while (!_ssem(PWM_SEMAPHORE)) { }
 
       if (u16PITTimeOut != 0xFFFF)
       {

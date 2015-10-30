@@ -30,8 +30,10 @@
 * Declaration of module wide TYPEs 
 *****************************************************************************************************/
 
+//Not yet sure about the PWM structure
 typedef struct {
 	UINT8 * u8Port;
+	UINT8 u8Period;
  	UINT8 u8Duty;
   UINT8 u8BitMask;
   }stPWMDescr;
@@ -74,7 +76,7 @@ typedef struct {
 
 #pragma CODE_SEG DEFAULT
 
-/* Cam Crank - Initialization */
+/* PWM - Initialization */
 void vfnPWM_Driver_Init( void );
 
 #pragma DATA_SEG SHARED_DATA
@@ -86,7 +88,7 @@ void vfnPWM_Driver_Init( void );
 	//void interrupt vfnCamCrank_Init_XGATE_Isr(void); ¿Cómo aquí qué?
 #pragma CODE_SEG DEFAULT	
 
-/* Cam Crank - Start */
+/* PWM - Start */
 void vfnPMW_Start ( void );
 
 #endif /* __PMW_DRIVER_H */
